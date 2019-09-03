@@ -15,6 +15,7 @@ const updateBalance = async (context, setCurrentBalance) => {
 	const { account, library } = context;
 	const current = await library.getBalance(account);
 	setCurrentBalance(current.toString());
+	console.log('Balance updated')
 };
 
 const initialEther = ethers.utils.parseEther('0');
@@ -23,7 +24,7 @@ function Account(props) {
 
 	// const ethereum = {};
 	if (ethereum && !!ethereum.autoRefreshOnNetworkChange) {
-		console.log('autoRefreshOnNetworkChange');
+		console.log('SetAutoRefreshOnNetworkChange');
 		ethereum.autoRefreshOnNetworkChange = false;
 	}
 
@@ -41,12 +42,12 @@ function Account(props) {
 	const safeSetCurrentBalance = (...args) => mountedRef.current && setCurrentBalance(...args);
 
 	useEffect(() => {
-		console.log('context changed', context);
+		console.log('useEffect::contextChanged');
 		updateBalance(context, safeSetCurrentBalance);
 	}, [context]);
 
 	useEffect(() => {
-		console.log('setFirstValidConnector');
+		console.log('useEffect::setFirstValidConnector');
 		// context.setFirstValidConnector(['MetaMask', 'Infura']);
 		context.setFirstValidConnector(['MetaMask']);
 	}, []);
