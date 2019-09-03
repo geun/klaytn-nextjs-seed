@@ -4,10 +4,13 @@ import dynamic from 'next/dynamic';
 import { useWeb3Context } from 'web3-react';
 
 import { ethers } from 'ethers';
+import { Button, Divider, PageHeader, notification } from 'antd';
 
-const setCurrentHandle = (context, setHandler) => e => {
+const setCurrentHandle = (context, setHandler) => async e => {
 	e.preventDefault();
-	return updateBalance(context, setHandler);
+
+	const account = await updateBalance(context, setHandler);
+	openNotification(account);
 };
 
 const updateBalance = async (context, setCurrentBalance) => {
@@ -15,13 +18,22 @@ const updateBalance = async (context, setCurrentBalance) => {
 	const { account, library } = context;
 	const current = await library.getBalance(account);
 	setCurrentBalance(current.toString());
-	console.log('Balance updated')
+	console.log('Balance updated');
+	return account;
 };
 
 const initialEther = ethers.utils.parseEther('0');
-// This component must be a child of <App> to have access to the appropriate context
-function Account(props) {
 
+const openNotification = account => {
+	const args = {
+		message: 'Update Current Balance',
+		description: `Account: ${account.slice(0, 20)} ...`,
+		duration: 5
+	};
+	notification.open(args);
+};
+
+function Account(props) {
 	// const ethereum = {};
 	if (ethereum && !!ethereum.autoRefreshOnNetworkChange) {
 		console.log('SetAutoRefreshOnNetworkChange');
@@ -72,14 +84,17 @@ function Account(props) {
 		return (
 			active && (
 				<>
-					<h1>My account</h1>
-					<p>Active Connector: {connectorName}</p>
-					<p>Account: {account || 'None'}</p>
-					<p>Network ID: {networkId}</p>
-					<p>Current Balance: {etherString}</p>
-					<button onClick={setCurrentHandle(context, safeSetCurrentBalance)}>
-						Get Current Balance
-					</button>
+					<PageHeader title={'My account'} subTitle={'Eth account with Metamask'} />
+					<div style={{ padding: 24 }}>
+						<p>Active Connector: {connectorName}</p>
+						<p>Account: {account || 'None'}</p>
+						<p>Network ID: {networkId}</p>
+						<p>Current Balance: {etherString}</p>
+						<Divider />
+						<Button onClick={setCurrentHandle(context, safeSetCurrentBalance)}>
+							Update Current Balance
+						</Button>
+					</div>
 				</>
 			)
 		);

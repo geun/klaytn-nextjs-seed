@@ -6,10 +6,10 @@ function KenLeeFuncComp(props) {
 	console.log('username', id);
 
 	return (
-		<div>
-			<h1>Hello. I'm Ken</h1>
-			<h2>Glad to meet you {username.toLocaleUpperCase()} (ID: {id}) </h2>
-		</div>
+		<>
+			<h1 style={{marginTop: 24}}>Hello. I'm Ken</h1>
+			<h2 style={{color: "#6a6a6a"}}>Glad to meet you {username.toLocaleUpperCase()} (ID: {id}) </h2>
+		</>
 	);
 }
 

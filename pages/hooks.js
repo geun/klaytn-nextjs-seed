@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from 'antd';
 
 function Example() {
 	// Declare a new state variable, which we'll call "count"
@@ -10,11 +11,11 @@ function Example() {
 	const [count, setCount] = useState(0);
 
 	return (
-		<div>
+		<div style={{marginTop: 24}}>
 			<p>You clicked {count} times</p>
-			<button onClick={() => setCount(count + 1)}>
+			<Button onClick={() => setCount(count + 1)}>
 				Click me
-			</button>
+			</Button>
 		</div>
 	);
 }
