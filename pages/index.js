@@ -14,7 +14,7 @@ export default () => (
 			</Link>
 		</li>
 		<li>
-			<Link href={{ pathname: '/sampless', query: { id: '2', usename: '이은미' } }}>
+			<Link href={{ pathname: '/samples', query: { id: '2', username: 'jessi' } }}>
 				<a>Sample</a>
 			</Link>
 		</li>

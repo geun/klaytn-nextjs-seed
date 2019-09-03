@@ -1,20 +1,21 @@
 import React from 'react';
 
 function KenLeeFuncComp(props) {
-	const { id, username } = props;
+	const { id, username } = props.query;
 	console.log('id', id);
+	console.log('username', id);
 
 	return (
 		<div>
-			<h1>안녕하세요. 저는 Ken 입니다. </h1>
-			<h2>Id:#{id} {username}님 반갑습니다.</h2>
+			<h1>Hello. I'm Ken</h1>
+			<h2>Glad to meet you {username.toLocaleUpperCase()} (ID: {id}) </h2>
 		</div>
 	);
 }
 
 KenLeeFuncComp.getInitialProps = ({ query }) => {
 	console.log('getInitialProps:');
-	return { query, id: 10, username: '이은미' };
+	return { query };
 };
 
 export default KenLeeFuncComp;
