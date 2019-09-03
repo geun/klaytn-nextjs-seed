@@ -58,7 +58,7 @@ packages/**/dist
 .cache
 
 flow-typed/
-#lib/
+#hooks/
 storybook-static/
 .packages
 

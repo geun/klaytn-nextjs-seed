@@ -1,4 +1,4 @@
-# Custom Express Server example
+# Web3 with Nextjs Seed 
 
 ## How to use
 

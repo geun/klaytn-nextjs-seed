@@ -4,18 +4,23 @@ import Link from 'next/link';
 export default () => (
 	<ul>
 		<li>
-			<Link href="/b" as="/a">
-				<a>a</a>
+			<Link href="/account">
+				<a>Account</a>
 			</Link>
 		</li>
 		<li>
-			<Link href="/a" as="/b">
-				<a>b</a>
+			<Link href="/hooks">
+				<a>Hooks sample</a>
+			</Link>
+		</li>
+		<li>
+			<Link href={{ pathname: '/sampless', query: { id: '2', usename: '이은미' } }}>
+				<a>Sample</a>
 			</Link>
 		</li>
 		<li>
 			<Link href={{ pathname: '/posts', query: { id: '2' } }} as="/posts/2">
-				<a>post #2</a>
+				<a>Post #2</a>
 			</Link>
 		</li>
 	</ul>

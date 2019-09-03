@@ -8,12 +8,11 @@
   },
   "dependencies": {
     "ethers": "^4.0.36",
-    "express": "^4.14.0",
+    "express": "^4.17.1",
     "next": "latest",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "web3": "^1.2.1",
-    "web3-react": "^5.0.4"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "web3-react": "latest"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
