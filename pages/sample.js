@@ -6,8 +6,8 @@ function KenLeeFuncComp(props) {
 
 	return (
 		<div>
-			<h1>안녕하세요. 저는 Ken #{id} 입니다. </h1>
-			<h2>{username}님 반갑습니다.</h2>
+			<h1>안녕하세요. 저는 Ken 입니다. </h1>
+			<h2>Id:#{id} {username}님 반갑습니다.</h2>
 		</div>
 	);
 }
