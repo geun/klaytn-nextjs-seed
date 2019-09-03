@@ -20,7 +20,10 @@ const updateBalance = async (context, setCurrentBalance) => {
 const initialEther = ethers.utils.parseEther('0');
 // This component must be a child of <App> to have access to the appropriate context
 function Account(props) {
+
+	// const ethereum = {};
 	if (ethereum && !!ethereum.autoRefreshOnNetworkChange) {
+		console.log('autoRefreshOnNetworkChange');
 		ethereum.autoRefreshOnNetworkChange = false;
 	}
 
