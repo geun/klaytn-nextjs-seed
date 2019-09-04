@@ -33,6 +33,12 @@ export default () => (
 					<a>Code</a>
 				</Link>
 			</li>
+			<li>
+				<Link href="/klaytn">
+					<a>Klaytn</a>
+				</Link>
+			</li>
+
 		</ul>
 	</>
 );

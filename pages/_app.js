@@ -10,6 +10,7 @@ import defaultTheme from '../themes/default.theme';
 // web3-react
 import Web3Provider, { Connectors } from 'web3-react';
 import Container from '../components/Container';
+import { CaverProvider } from '../hooks/useCaver';
 const { InjectedConnector, NetworkOnlyConnector } = Connectors;
 const MetaMask = new InjectedConnector();
 const Infura = new NetworkOnlyConnector({
@@ -24,9 +25,11 @@ class MyApp extends App {
 		return (
 			<ThemeProvider theme={defaultTheme}>
 				<Web3Provider connectors={connectors} libraryName={'ethers.js'}>
-					<Container>
-						<Component {...pageProps} />
-					</Container>
+					<CaverProvider options={{provider: 'baobab'}}>
+						<Container>
+							<Component {...pageProps} />
+						</Container>
+					</CaverProvider>
 				</Web3Provider>
 			</ThemeProvider>
 		);

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import dynamic from 'next/dynamic';
 import { useWeb3Context } from 'web3-react';
