@@ -46,7 +46,7 @@ function Account(props) {
 	useEffect(() => {
 		mountedRef.current = true;
 		return () => (mountedRef.current = false);
-	});
+	},[]);
 
 	// const manager = useWeb3Manager();
 	const [currentBalance, setCurrentBalance] = useState(initialEther);
