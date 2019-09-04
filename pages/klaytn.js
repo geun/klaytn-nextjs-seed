@@ -34,16 +34,16 @@ function sendTestTransaction({
 }
 
 const KlaytnAccount = () => {
-	const caver = useCaver();
+	const context = useCaver();
 	const [account, setAccount] = useState('');
 	const [balance, setBalance] = useState('0');
 
 	const [lastTransaction, setLastTransaction] = useState({});
 
 	useEffect(() => {
-		if (caver === null) return;
+		if (context === null) return;
 
-		const provider = caver.getProvider();
+		const provider = context.getProvider();
 		const decryptedAccount = provider.accounts.decrypt(TestAccount, 'klaytest1234!');
 
 		// clear wallet
@@ -51,22 +51,25 @@ const KlaytnAccount = () => {
 
 		const addedAccount = provider.accounts.wallet.add(decryptedAccount);
 		setAccount(addedAccount);
-	}, [caver]);
+	}, [context]);
 
 	console.log(account);
 
 	useEffect(() => {}, [balance]);
 
 	async function send(values) {
-		if (caver === null) {
+		if (context === null) {
 			alert('No provider');
 			return;
 		}
 
-		const provider = caver.getProvider();
+		const provider = context.getProvider();
+		const { toPeb } = context.getUtils();
+
+		const amount = parseInt(values.amount * 1000); // decimal to integer
 		const transaction = await sendTestTransaction({
 			provider,
-			amount: values.amount,
+			amount: toPeb(amount, 'mKLAY'),
 			fromAddress: account.address,
 			toAddress: values.address
 		});

@@ -22,7 +22,7 @@ class AmountInputComp extends React.Component {
 
 				<Form.Item>
 					{getFieldDecorator('amount', {})(
-						<InputNumber min={1} max={5} step={1} placeholder="Amount" />
+						<InputNumber min={0.01} max={50000000} step={0.01} placeholder="Amount" />
 					)}
 				</Form.Item>
 

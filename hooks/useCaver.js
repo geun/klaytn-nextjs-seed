@@ -2,7 +2,6 @@ import React, { createContext, useContext } from 'react';
 import { useAsObservableSource, useLocalStore } from 'mobx-react-lite';
 
 import Caver from 'caver-js'
-import TestAccount from '../lib/klaytn/test-account';
 
 const CaverContext = createContext();
 
@@ -26,8 +25,15 @@ const CaverStore = props => ({
 		}
 
 		return this.client.klay
-	}
+	},
 
+	getUtils() {
+		if (this.client !== null) {
+			return this.client.utils
+		} else {
+			throw new Error('No client')
+		}
+	},
 });
 
 export const CaverProvider = ({ children, options = { provider: 'cypress' } }) => {
