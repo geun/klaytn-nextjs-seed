@@ -5,8 +5,8 @@ function Example() {
 	// Declare a new state variable, which we'll call "count"
 
 	// const context = useState(0);
-	// let count = context[0];
-	// let setCount = context[1];
+	// let count = context[0];  // integer
+	// let setCount = context[1]; //fn
 
 	const [count, setCount] = useState(0);
 

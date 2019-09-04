@@ -28,6 +28,11 @@ export default () => (
 					<a>Post #2</a>
 				</Link>
 			</li>
+			<li>
+				<Link href="/code">
+					<a>Code</a>
+				</Link>
+			</li>
 		</ul>
 	</>
 );
