@@ -11,13 +11,11 @@ function Example() {
 	const [count, setCount] = useState(0);
 
 	return (
-		<div style={{marginTop: 24}}>
+		<div style={{ marginTop: 24 }}>
 			<p>You clicked {count} times</p>
-			<Button onClick={() => setCount(count + 1)}>
-				Click me
-			</Button>
+			<Button onClick={() => setCount(count + 1)}>Click me</Button>
 		</div>
 	);
 }
 
-export default Example
+export default Example;
