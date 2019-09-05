@@ -28,10 +28,6 @@ const User = ({ user }) => {
 	return <div>Name: {user.name}</div>;
 };
 
-
-
-
-
 // setUsers([...users, values]);
 
 const UserListContainer = props => {
