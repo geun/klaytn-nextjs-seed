@@ -64,3 +64,5 @@ storybook-static/
 
 .npmrc
 changed.json
+.secret
+.env

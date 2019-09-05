@@ -1,3 +1,8 @@
+require('dotenv').config();
+
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+
 const withPlugins = require('next-compose-plugins');
 const withOptimizedImages = require('next-optimized-images');
 const withFonts = require('next-fonts');
@@ -40,6 +45,13 @@ const nextConfig = {
 			})
 		);
 
+		config.plugins.push(
+			// Read the .env file
+			new Dotenv({
+				path: path.join(__dirname, '.env'),
+				systemvars: true
+			})
+		);
 
 		return config;
 	}
