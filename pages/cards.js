@@ -6,15 +6,12 @@ import { Button, Divider, PageHeader, Typography } from 'antd';
 const { Title, Text } = Typography;
 
 import { useCaver } from '../hooks/useCaver';
-import AmountInput from '../components/AmountInput';
 
 import JSONPretty from 'react-json-pretty';
 import { JsonContainer } from '../components/PrettyJson.style';
 
 import axios from 'axios';
 import NewCardInput from '../components/NewCardInput';
-import { get } from 'mobx';
-import { providers } from 'ethers';
 
 function getOwner(contract) {
 	return contract.methods.owner().call();
@@ -23,7 +20,7 @@ function getCardCount({ contract, from }) {
 	return contract.methods.getCardCount().call();
 }
 
-function executeMintCart({ contract, name, address, from }) {
+function executeMintCard({ contract, name, address, from }) {
 	return contract.methods.mintCard(name, address).send({ from, gas: '300000' });
 }
 
@@ -49,8 +46,6 @@ async function updateOwner(contract, setOwner) {
 }
 
 const MintableCard = ({ abi, contractAddress }) => {
-	console.log('MintableCard::render');
-
 	const context = useCaver();
 	const [account, setAccount] = useState('');
 	const [balance, setBalance] = useState('0');
@@ -62,7 +57,7 @@ const MintableCard = ({ abi, contractAddress }) => {
 	const [ownerAddress, setOwnerAddress] = useState('');
 	const [cardCount, setCardCount] = useState(0);
 
-	useEffect(() => {
+	function initializer() {
 		if (context === null) return;
 
 		const provider = context.getProvider();
@@ -77,10 +72,11 @@ const MintableCard = ({ abi, contractAddress }) => {
 		setAccount(addedAccount);
 
 		const loadedContract = new provider.Contract(abi, contractAddress);
-
-		console.log(loadedContract);
-
 		setContract(loadedContract);
+	}
+
+	useEffect(() => {
+		initializer();
 	}, [context]);
 
 	useEffect(() => {}, [balance]);
@@ -106,7 +102,7 @@ const MintableCard = ({ abi, contractAddress }) => {
 		const { toPeb } = context.getUtils();
 
 		const { name, address } = values;
-		const transaction = await executeMintCart({
+		const transaction = await executeMintCard({
 			contract,
 			name,
 			address,
@@ -151,8 +147,8 @@ const MintableCard = ({ abi, contractAddress }) => {
 	);
 };
 
-MintableCard.getInitialProps = async props => {
-	console.log('MintableCard::getInitialProps');
+MintableCard.getInitialProps = async ({ pathname }) => {
+	console.log('MintableCard::getInitialProps', pathname);
 	const abi = await axios.get(process.env.CONTRACT_ABI_JSON).then(res => {
 		return res.data;
 	});
