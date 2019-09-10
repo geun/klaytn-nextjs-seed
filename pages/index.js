@@ -50,6 +50,12 @@ export default () => (
 					<a>MARFCard</a>
 				</Link>
 			</li>
+
+			<li>
+				<Link href="/getInitialProps">
+					<a>getInitialProps</a>
+				</Link>
+			</li>
 		</ul>
 	</>
 );
