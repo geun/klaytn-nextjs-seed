@@ -16,36 +16,21 @@ import { JsonContainer } from '../components/PrettyJson.style';
 import NewCardInput from '../components/NewCardInput';
 
 function getOwner(contract) {
-	return contract.methods.owner().call();
 }
 
 function getCardCount({ contract, from }) {
-	return contract.methods.getCardCount().call();
 }
 
 function executeMintCard({ contract, name, address, from }) {
-	return contract.methods.mintCard(name, address).send({ from, gas: '300000' });
 }
 
 function getCard(contract, index) {
-	try {
-		console.log('getCard: ', index);
-		return contract.methods.cards(index).call();
-	} catch (e) {
-		console.log(e);
-		return null;
-	}
 }
 
 async function updateCard(contract, cardIndex, setCard) {
-	if (cardIndex < 0) return;
-	const card = await getCard(contract, cardIndex);
-	setCard(card);
 }
 
 async function updateOwner(contract, setOwner) {
-	const owner = await getOwner(contract);
-	setOwner(owner);
 }
 
 const MintableCard = ({ abi, contractAddress }) => {
