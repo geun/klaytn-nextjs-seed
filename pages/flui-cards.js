@@ -1,16 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+// lib
+import fetch from 'isomorphic-unfetch';
 import dynamic from 'next/dynamic';
-import { Button, Divider, PageHeader, Typography } from 'antd';
-
-const { Title, Text } = Typography;
-
 import { useCaver } from '../hooks/useCaver';
 
+// ui
+import { Button, Divider, PageHeader, Typography } from 'antd';
+const { Title, Text } = Typography;
+
+// pretty json
 import JSONPretty from 'react-json-pretty';
 import { JsonContainer } from '../components/PrettyJson.style';
 
-import axios from 'axios';
+
 import NewCardInput from '../components/NewCardInput';
 
 function getOwner(contract) {
@@ -149,13 +152,13 @@ const MintableCard = ({ abi, contractAddress }) => {
 
 MintableCard.getInitialProps = async ({ pathname }) => {
 	console.log('MintableCard::getInitialProps', pathname);
-	const abi = await axios.get(process.env.CONTRACT_ABI_JSON).then(res => {
+	const abi = await fetch(process.env.CONTRACT_ABI_JSON).then(res => {
 		return res.data;
 	});
 
-	const { contractAddress } = await axios
-		.get(process.env.CONTRACT_ADDRESS_JSON)
-		.then(res => res.data);
+	const { contractAddress } = await fetch(process.env.CONTRACT_ADDRESS_JSON).then(
+		res => res.data
+	);
 
 	return { abi, contractAddress };
 };
