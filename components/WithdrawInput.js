@@ -32,7 +32,7 @@ class WithdrawInputComp extends React.Component {
 				</Form.Item>
 				<Form.Item>
 					<Button htmlType="submit" type="primary">
-						DEPOSIT
+						WITHDRAW
 					</Button>
 				</Form.Item>
 			</Form>

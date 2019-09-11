@@ -21,13 +21,13 @@ const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 // }
 
 function deposit({ contract, amount, from }) {
-	return contract.methods.deposit(amount).send({ from, gas: '300000' });
+	return contract.methods.deposit(amount).send({ value: amount, from, gas: '300000' });
 }
 function withdraw({ contract, amount, from }) {
 	return contract.methods.withdraw(amount).send({ from, gas: '300000' });
 }
 function transfer({ contract, to, amount, from }) {
-	return contract.methods.transfer(amount).send({ from, gas: '300000' });
+	return contract.methods.transfer(to, amount).send({ from, gas: '300000' });
 }
 function getBalance({ contract, from }) {
 	return contract.methods.getBalance(amount).send({ from, gas: '300000' });
@@ -79,14 +79,13 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 		// const { amount } = values;
 		const amount = parseInt(values.amount * 1000); // decimal to integer
 
-		// const transaction = await withdraw({
-		// 	contract,
-		// 	name,
-		// 	address,
-		// 	from: account.address
-		// });
-		//
-		// setLastTransaction(transaction);
+		const transaction = await withdraw({
+			contract,
+			amount: toPeb(amount, 'mKLAY'),
+			from: account.address
+		});
+
+		setLastTransaction(transaction);
 	}
 
 	// onSubmit -> onTransferSubmit
@@ -102,14 +101,14 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 		const { to } = values;
 		// const { amount } = values;
 		const amount = parseInt(values.amount * 1000); // decimal to integer
-		// const transaction = await transfer({
-		// 	contract,
-		// 	to,
-		// 	amount,
-		// 	from: account.address
-		// });
-		//
-		// setLastTransaction(transaction);
+		const transaction = await transfer({
+			contract,
+			to,
+			amount,
+			from: account.address
+		});
+
+		setLastTransaction(transaction);
 	}
 
 	const { rowStyle, colStyle, gutter } = basicStyle;
