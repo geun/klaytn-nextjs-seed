@@ -15,6 +15,7 @@ if (typeof require !== 'undefined') {
 	require.extensions['.css'] = file => {};
 }
 
+// touch
 const nextConfig = {
 	serverRuntimeConfig: {
 		KLAYTN_PRIVATE_KEY: process.env.KLAYTN_PRIVATE_KEY,
