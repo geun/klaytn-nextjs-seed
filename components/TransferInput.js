@@ -16,15 +16,18 @@ class TransferInputComp extends React.Component {
 
 		return (
 			<Form layout="vertical" onSubmit={this.onInputChangeHandle} style={{ marginTop: 32 }}>
-				<Form.Item>
+				<Form.Item label="To">
 					{getFieldDecorator('to', {})(<Input placeholder="To Address" />)}
 				</Form.Item>
-				<Form.Item>
-					{getFieldDecorator('amount', {})(
+				<Form.Item label="Amount">
+					{getFieldDecorator('amount', {
+						initialValue: 0.01
+					})(
 						<InputNumber
 							min={0.01}
 							max={1.0}
 							step={0.01}
+							defaultValue={0.01}
 							style={{ width: '100%' }}
 							placeholder="Amount"
 						/>

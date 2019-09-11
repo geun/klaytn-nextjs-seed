@@ -16,8 +16,10 @@ class DepositInputComp extends React.Component {
 
 		return (
 			<Form layout="vertical" onSubmit={this.onInputChangeHandle} style={{ marginTop: 32 }}>
-				<Form.Item>
-					{getFieldDecorator('amount', {})(
+				<Form.Item label="Amount">
+					{getFieldDecorator('amount', {
+						initialValue: 0.01
+					})(
 						<InputNumber
 							min={0.01}
 							max={1.0}
