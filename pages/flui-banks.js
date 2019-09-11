@@ -44,8 +44,9 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 
 	const [lastTransaction, setLastTransaction] = useState({});
 
-	async function onSubmit(values) {
-		console.log('onSubmit');
+	// onSubmit -> onDepositSubmitHandle
+	async function onDepositSubmit(values) {
+		console.log('onDepositSubmit', values);
 		if (context === null) {
 			alert('No provider');
 			return;
@@ -53,15 +54,62 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 
 		const { toPeb } = context.getUtils();
 
-		const { name, address } = values;
-		const transaction = await deposit({
-			contract,
-			name,
-			address,
-			from: account.address
-		});
+		// const { amount } = values;
+		const amount = parseInt(values.amount * 1000); // decimal to integer
 
-		setLastTransaction(transaction);
+		// const transaction = await deposit({
+		// 	contract,
+		// 	amount: toPeb(amount, 'mKLAY'),
+		// 	from: account.address
+		// });
+		//
+		// setLastTransaction(transaction);
+	}
+
+	// onSubmit -> onWithdrawSubmit
+	async function onWithdrawSubmit(values) {
+		console.log('onWithdrawSubmit', values);
+		if (context === null) {
+			alert('No provider');
+			return;
+		}
+
+		const { toPeb } = context.getUtils();
+
+		// const { amount } = values;
+		const amount = parseInt(values.amount * 1000); // decimal to integer
+
+		// const transaction = await withdraw({
+		// 	contract,
+		// 	name,
+		// 	address,
+		// 	from: account.address
+		// });
+		//
+		// setLastTransaction(transaction);
+	}
+
+	// onSubmit -> onTransferSubmit
+	async function onTransferSubmit(values) {
+		console.log('onTransferSubmit', values);
+		if (context === null) {
+			alert('No provider');
+			return;
+		}
+
+		const { toPeb } = context.getUtils();
+
+		const { to } = values;
+		// const { amount } = values;
+		const amount = parseInt(values.amount * 1000); // decimal to integer
+		// const transaction = await transfer({
+		// 	contract,
+		// 	to,
+		// 	amount,
+		// 	from: account.address
+		// });
+		//
+		// setLastTransaction(transaction);
 	}
 
 	const { rowStyle, colStyle, gutter } = basicStyle;
@@ -80,17 +128,17 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 			<Row style={rowStyle} gutter={gutter} type="flex">
 				<Col style={colStyle} span={8}>
 					<h3> Deposit Func </h3>
-					<DepositInput onSubmit={onSubmit} />
+					<DepositInput onSubmit={onDepositSubmit} />
 				</Col>
 
 				<Col style={colStyle} span={8}>
 					<h3> Withdraw Func </h3>
-					<WithdrawInput onSubmit={onSubmit} />
+					<WithdrawInput onSubmit={onWithdrawSubmit} />
 				</Col>
 
 				<Col style={colStyle} span={8}>
 					<h3> Transfer Func </h3>
-					<TransferInput onSubmit={onSubmit} />
+					<TransferInput onSubmit={onTransferSubmit} />
 				</Col>
 			</Row>
 
