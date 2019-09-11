@@ -8,13 +8,17 @@ import DepositInput from '../components/DepositInput';
 import { Button, Divider, PageHeader, Typography } from 'antd';
 const { Title, Text } = Typography;
 
+// pages/index.jsimport getConfig from 'next/config'
+// Only holds serverRuntimeConfig and publicRuntimeConfig from next.config.js nothing else.
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
+
 function deposit({ contract, amount, from }) {
 	return contract.methods.mintCard(amount).send({ from, gas: '300000' });
 }
 
-const FLUIBank = ({ abi, contractAddress }) => {
+const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 	const context = useCaver();
-	const privateKey = process.env.KLAYTN_PRIVATE_KEY;
+
 	const { account, contract, provider } = context.initializeWithContract({
 		privateKey,
 		abi,
@@ -68,15 +72,17 @@ const FLUIBank = ({ abi, contractAddress }) => {
 
 FLUIBank.getInitialProps = async ({ pathname }) => {
 	console.log('FLUIBank::getInitialProps', pathname);
-	const abi = await axios.get(process.env.CONTRACT_ABI_JSON).then(res => {
+
+	const privateKey = serverRuntimeConfig.KLAYTN_PRIVATE_KEY;
+	const abi = await axios.get(serverRuntimeConfig.CONTRACT_ABI_JSON).then(res => {
 		return res.data;
 	});
 
 	const { contractAddress } = await axios
-		.get(process.env.CONTRACT_ADDRESS_JSON)
+		.get(serverRuntimeConfig.CONTRACT_ADDRESS_JSON)
 		.then(res => res.data);
 
-	return { abi, contractAddress };
+	return { privateKey, abi, contractAddress };
 };
 
 export default FLUIBank;

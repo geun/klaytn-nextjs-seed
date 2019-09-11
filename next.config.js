@@ -16,6 +16,16 @@ if (typeof require !== 'undefined') {
 }
 
 const nextConfig = {
+	serverRuntimeConfig: {
+		KLAYTN_PRIVATE_KEY: process.env.KLAYTN_PRIVATE_KEY,
+		CONTRACT_ABI_JSON: process.env.CONTRACT_ABI_JSON,
+		CONTRACT_ADDRESS_JSON: process.env.CONTRACT_ADDRESS_JSON
+	},
+
+	publicRuntimeConfig: {
+		CAVER_PROVIDER: process.env.CAVER_PROVIDER
+	},
+
 	webpack: (config, { isServer }) => {
 		if (isServer) {
 			const antStyles = /antd\/.*?\/style\/css.*?/;
