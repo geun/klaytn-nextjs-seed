@@ -66,5 +66,6 @@ storybook-static/
 changed.json
 .secret
 .env
+.env.contract
 abi.json
 address.json

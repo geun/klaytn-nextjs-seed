@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('dotenv').config({ path: '.env.contract' });
 
 const path = require('path');
 const Dotenv = require('dotenv-webpack');

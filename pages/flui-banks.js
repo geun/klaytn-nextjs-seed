@@ -57,13 +57,13 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 		// const { amount } = values;
 		const amount = parseInt(values.amount * 1000); // decimal to integer
 
-		// const transaction = await deposit({
-		// 	contract,
-		// 	amount: toPeb(amount, 'mKLAY'),
-		// 	from: account.address
-		// });
-		//
-		// setLastTransaction(transaction);
+		const transaction = await deposit({
+			contract,
+			amount: toPeb(amount, 'mKLAY'),
+			from: account.address
+		});
+
+		setLastTransaction(transaction);
 	}
 
 	// onSubmit -> onWithdrawSubmit
