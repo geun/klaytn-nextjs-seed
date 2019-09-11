@@ -9,6 +9,7 @@ import { Button, Divider, PageHeader, Typography } from 'antd';
 const { Title, Text } = Typography;
 
 // pages/index.jsimport getConfig from 'next/config'
+import getConfig from 'next/config';
 // Only holds serverRuntimeConfig and publicRuntimeConfig from next.config.js nothing else.
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 
