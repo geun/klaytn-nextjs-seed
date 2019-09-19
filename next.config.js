@@ -10,6 +10,7 @@ const withFonts = require('next-fonts');
 const withCSS = require('@zeit/next-css');
 
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
+const webpack = require('webpack');
 
 // fix: prevents error when .css files are required by node
 if (typeof require !== 'undefined') {
@@ -18,11 +19,14 @@ if (typeof require !== 'undefined') {
 
 // touch
 const nextConfig = {
-	serverRuntimeConfig: {
-		KLAYTN_PRIVATE_KEY: process.env.KLAYTN_PRIVATE_KEY,
-	},
+	target: 'serverless',
 
-	publicRuntimeConfig: {
+	env: {
+		KLAYTN_PRIVATE_KEY: process.env.KLAYTN_PRIVATE_KEY,
+		FLUI_CARD_CONTRACT_ABI_JSON: process.env.FLUI_CARD_CONTRACT_ABI_JSON,
+		FLUI_CARD_CONTRACT_ADDRESS_JSON: process.env.FLUI_CARD_CONTRACT_ADDRESS_JSON,
+		FLUI_BANK_CONTRACT_ABI_JSON: process.env.FLUI_BANK_CONTRACT_ABI_JSON,
+		FLUI_BANK_CONTRACT_ADDRESS_JSON: process.env.FLUI_BANK_CONTRACT_ADDRESS_JSON,
 		CAVER_PROVIDER: process.env.CAVER_PROVIDER
 	},
 
@@ -62,6 +66,17 @@ const nextConfig = {
 				systemvars: true
 			})
 		);
+
+		config.resolve.alias = {
+			...config.resolve.alias,
+			// 'scrypt.js': path.resolve(__dirname, './node_modules/scrypt.js/js.js')
+			'scrypt': 'js-scrypt'
+
+			// fix websocket require path
+			// websocket: path.resolve(__dirname, '../')
+		};
+
+		config.plugins.push(new webpack.IgnorePlugin(/^(?:electron|ws)$/));
 
 		return config;
 	}

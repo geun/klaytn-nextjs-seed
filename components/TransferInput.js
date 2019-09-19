@@ -27,7 +27,6 @@ class TransferInputComp extends React.Component {
 							min={0.01}
 							max={1.0}
 							step={0.01}
-							defaultValue={0.01}
 							style={{ width: '100%' }}
 							placeholder="Amount"
 						/>

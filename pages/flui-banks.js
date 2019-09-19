@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+// lib
+import axios from 'axios';
+import dynamic from 'next/dynamic';
 import { useCaver } from '../hooks/useCaver';
+
+// ui
 import JSONPretty from 'react-json-pretty';
 import { JsonContainer } from '../components/PrettyJson.style';
-import axios from 'axios';
 import DepositInput from '../components/DepositInput';
 import { Button, Col, Divider, PageHeader, Row, Typography } from 'antd';
 const { Title, Text } = Typography;
 
-// pages/index.jsimport getConfig from 'next/config'
-import getConfig from 'next/config';
 import WithdrawInput from '../components/WithdrawInput';
 import TransferInput from '../components/TransferInput';
 import basicStyle from '../components/basicStyle';
-// Only holds serverRuntimeConfig and publicRuntimeConfig from next.config.js nothing else.
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 
 // function deposit({ contract, amount, from }) {
 // 	return contract.methods.mintCard(amount).send({ from, gas: '300000' });
@@ -26,9 +26,11 @@ function deposit({ contract, amount, from }) {
 function withdraw({ contract, amount, from }) {
 	return contract.methods.withdraw(amount).send({ from, gas: '300000' });
 }
+
 function transfer({ contract, to, amount, from }) {
 	return contract.methods.transfer(to, amount).send({ from, gas: '300000' });
 }
+
 function getBalance({ contract, from }) {
 	return contract.methods.getBalance(amount).send({ from, gas: '300000' });
 }
@@ -151,24 +153,35 @@ const FLUIBank = ({ privateKey, abi, contractAddress }) => {
 	);
 };
 
-FLUIBank.getInitialProps = async ({ pathname }) => {
-	console.log('FLUIBank::getInitialProps', pathname);
-	console.log('FLUIBank::getInitialProps::serverRuntimeConfig', serverRuntimeConfig);
+const NoSSRFLUIBank = dynamic(
+	() => {
+		return Promise.resolve(FLUIBank);
+	},
+	{
+		ssr: false
+	}
+);
 
+const FLUIBankPage = props => {
+	return (
+		<>
+			<NoSSRFLUIBank {...props} />
+		</>
+	);
+};
 
-	const CONTRACT_ABI_JSON = ''
-	const CONTRACT_ADDRESS_JSON = ''
+FLUIBankPage.getInitialProps = async ({ pathname }) => {
+	const CONTRACT_ABI_JSON = process.env.FLUI_CARD_CONTRACT_ABI_JSON;
+	const CONTRACT_ADDRESS_JSON = process.env.FLUI_CARD_CONTRACT_ADDRESS_JSON;
 
-	const privateKey = serverRuntimeConfig.KLAYTN_PRIVATE_KEY;
+	const privateKey = process.env.KLAYTN_PRIVATE_KEY;
 	const abi = await axios.get(CONTRACT_ABI_JSON).then(res => {
 		return res.data;
 	});
 
-	const { contractAddress } = await axios
-		.get(CONTRACT_ADDRESS_JSON)
-		.then(res => res.data);
+	const { contractAddress } = await axios.get(CONTRACT_ADDRESS_JSON).then(res => res.data);
 
 	return { privateKey, abi, contractAddress };
 };
 
-export default FLUIBank;
+export default FLUIBankPage;
