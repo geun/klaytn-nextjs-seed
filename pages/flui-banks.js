@@ -155,13 +155,17 @@ FLUIBank.getInitialProps = async ({ pathname }) => {
 	console.log('FLUIBank::getInitialProps', pathname);
 	console.log('FLUIBank::getInitialProps::serverRuntimeConfig', serverRuntimeConfig);
 
+
+	const CONTRACT_ABI_JSON = ''
+	const CONTRACT_ADDRESS_JSON = ''
+
 	const privateKey = serverRuntimeConfig.KLAYTN_PRIVATE_KEY;
-	const abi = await axios.get(serverRuntimeConfig.CONTRACT_ABI_JSON).then(res => {
+	const abi = await axios.get(CONTRACT_ABI_JSON).then(res => {
 		return res.data;
 	});
 
 	const { contractAddress } = await axios
-		.get(serverRuntimeConfig.CONTRACT_ADDRESS_JSON)
+		.get(CONTRACT_ADDRESS_JSON)
 		.then(res => res.data);
 
 	return { privateKey, abi, contractAddress };
