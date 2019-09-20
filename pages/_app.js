@@ -15,10 +15,9 @@ class MyApp extends App {
 	render() {
 		const { Component, pageProps } = this.props;
 
-		const caverProviderName = process.env.CAVER_PROVIDER;
 		return (
 			<ThemeProvider theme={defaultTheme}>
-				<CaverProvider options={{ provider: caverProviderName }}>
+				<CaverProvider options={{ provider: process.env.CAVER_PROVIDER || 'baobab' }}>
 					<Container>
 						<Component {...pageProps} />
 					</Container>
