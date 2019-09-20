@@ -5,7 +5,7 @@ import { Divider } from 'antd';
 export default () => (
 	<>
 		<h1 style={{ marginBottom: 8 }}>Sample </h1>
-		<p style={{ margin: 0, color: '#aaaaaa' }}>Nextjs + Web3 + Antd</p>
+		<p style={{ margin: 0, color: '#aaaaaa' }}>Klaytn + Nextjs + Antd Seed</p>
 		<Divider />
 		<ul style={{ padding: 24 }}>
 			<li>
