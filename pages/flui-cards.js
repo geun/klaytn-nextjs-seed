@@ -48,38 +48,20 @@ async function updateOwner(contract, setOwner) {
 	setOwner(owner);
 }
 
-const FLUICard = ({ abi, contractAddress }) => {
+const FLUICard = ({ privateKey, abi, contractAddress }) => {
 	const context = useCaver();
-	const [account, setAccount] = useState('');
 
 	const [lastTransaction, setLastTransaction] = useState({});
 
-	const [contract, setContract] = useState(null);
 	const [currentCard, setCurrentCard] = useState({});
 	const [ownerAddress, setOwnerAddress] = useState('');
 	const [cardCount, setCardCount] = useState(0);
 
-	function initializer() {
-		if (context === null) return;
-
-		const provider = context.getProvider();
-
-		// clear wallet
-		provider.accounts.wallet.clear();
-
-		const decryptedAccount = provider.accounts.privateKeyToAccount(
-			process.env.KLAYTN_PRIVATE_KEY
-		);
-		const addedAccount = provider.accounts.wallet.add(decryptedAccount);
-		setAccount(addedAccount);
-
-		const loadedContract = new provider.Contract(abi, contractAddress);
-		setContract(loadedContract);
-	}
-
-	useEffect(() => {
-		initializer();
-	}, [context]);
+	const { account, contract, provider } = context.initializeWithContract({
+		privateKey,
+		abi,
+		contractAddress
+	});
 
 	useEffect(() => {
 		if (contract === null) return;

@@ -35,12 +35,6 @@ export default () => (
 			</li>
 
 			<li>
-				<Link href="/cards">
-					<a>Mint Cards</a>
-				</Link>
-			</li>
-
-			<li>
 				<Link href="/flui-cards">
 					<a>FLUI Cards</a>
 				</Link>
