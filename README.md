@@ -11,18 +11,47 @@ yarn dev
 ```
 
 
-## Set Environments with DotEnv
+## Set Environments for develop
 ```
-KLAYTN_PRIVATE_KEY=0x6701dedd02e41c6b999db0c9b6f7bbc77be87a59c16aa323006dc2182d1a552f
+KLAYTN_PRIVATE_KEY=
 
-FLUI_CARD_CONTRACT_ABI_JSON=https://marf3927.blob.core.windows.net/marf-solidity/artifacts/contracts/MARFCard/1568011175418/abi.json
-FLUI_CARD_CONTRACT_ADDRESS_JSON=https://marf3927.blob.core.windows.net/marf-solidity/artifacts/contracts/MARFCard/1568011175418/addressFile.json
+FLUI_CARD_CONTRACT_ABI_JSON=
+FLUI_CARD_CONTRACT_ADDRESS_JSON=
 
-FLUI_BANK_CONTRACT_ABI_JSON=https://marf3927.blob.core.windows.net/marf-solidity/artifacts/contracts/MARFCard/1568011175418/abi.json
-FLUI_BANK_CONTRACT_ADDRESS_JSON=https://marf3927.blob.core.windows.net/marf-solidity/artifacts/contracts/MARFCard/1568011175418/addressFile.json
+FLUI_BANK_CONTRACT_ABI_JSON=
+FLUI_BANK_CONTRACT_ADDRESS_JSON=
 
 CAVER_PROVIDER=baobab
 ````
+
+## Set Environments for zeit's now
+
+Create `now.json` and set environments.
+
+```bash
+
+now secrets add default-klaytn-private-key-staging <secret-value>
+now secrets add default-klaytn-caver-provider-staging <secret-value>
+now secrets add klaytn-seed-klaytn-flui-card-contract-abi-json-staging <secret-value>
+now secrets add klaytn-seed-klaytn-flui-card-contract-address-json-staging <secret-value>
+now secrets add klaytn-seed-klaytn-flui-bank-contract-abi-json-staging <secret-value>
+now secrets add klaytn-seed-klaytn-flui-bank-contract-address-json-staging <secret-value>
+
+```
+
+
+```json
+{
+  "env": {
+    "KLAYTN_PRIVATE_KEY": "default-klaytn-private-key-staging",
+    "CAVER_PROVIDER": "default-klaytn-caver-provider-staging",
+    "FLUI_CARD_CONTRACT_ABI_JSON": "klaytn-seed-klaytn-flui-card-contract-abi-json-staging",
+    "FLUI_CARD_CONTRACT_ADDRESS_JSON": "klaytn-seed-klaytn-flui-card-contract-address-json-staging",
+    "FLUI_BANK_CONTRACT_ABI_JSON": "klaytn-seed-klaytn-flui-bank-contract-abi-json-staging",
+    "FLUI_BANK_CONTRACT_ADDRESS_JSON": "klaytn-seed-klaytn-flui-bank-contract-address-json-staging"
+  }
+}
+``` 
 
 ## Deploy it to the cloud with [now](https://zeit.co/now) ([download](https://zeit.co/download))
 
