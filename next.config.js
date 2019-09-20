@@ -21,15 +21,6 @@ if (typeof require !== 'undefined') {
 const nextConfig = {
 	target: 'serverless',
 
-	env: {
-		KLAYTN_PRIVATE_KEY: process.env.KLAYTN_PRIVATE_KEY,
-		FLUI_CARD_CONTRACT_ABI_JSON: process.env.FLUI_CARD_CONTRACT_ABI_JSON,
-		FLUI_CARD_CONTRACT_ADDRESS_JSON: process.env.FLUI_CARD_CONTRACT_ADDRESS_JSON,
-		FLUI_BANK_CONTRACT_ABI_JSON: process.env.FLUI_BANK_CONTRACT_ABI_JSON,
-		FLUI_BANK_CONTRACT_ADDRESS_JSON: process.env.FLUI_BANK_CONTRACT_ADDRESS_JSON,
-		CAVER_PROVIDER: process.env.CAVER_PROVIDER
-	},
-
 	webpack: (config, { isServer }) => {
 		if (isServer) {
 			const antStyles = /antd\/.*?\/style\/css.*?/;
