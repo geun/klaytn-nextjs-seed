@@ -1,4 +1,4 @@
-# Web3 with Nextjs Seed 
+# Klaytn + Nextjs Seed  
 
 ## Install it and run:
 
