@@ -1,10 +1,10 @@
 {
   "env": {
-    "KLAYTN_PRIVATE_KEY": "0xe9e7bd4c30a634fa81e1ca7a85a29cef8d53accb51e3bac4b55b5c2def30297f",
-    "CAVER_PROVIDER": "baobab",
-    "FLUI_CARD_CONTRACT_ABI_JSON": "https://contract.static.cdn.flui.us/artifacts/contracts/FLUICard/1568890536611/abi.json",
-    "FLUI_CARD_CONTRACT_ADDRESS_JSON": "https://contract.static.cdn.flui.us/artifacts/contracts/FLUICard/1568890536611/addressFile.json",
-    "FLUI_BANK_CONTRACT_ABI_JSON": "https://contract.static.cdn.flui.us/artifacts/contracts/FLUIBank/1568890613080/abi.json",
-    "FLUI_BANK_CONTRACT_ADDRESS_JSON": "https://contract.static.cdn.flui.us/artifacts/contracts/FLUIBank/1568890613080/addressFile.json"
+    "KLAYTN_PRIVATE_KEY": "@default-klaytn-private-key-staging",
+    "CAVER_PROVIDER": "@default-klaytn-caver-provider-staging",
+    "FLUI_CARD_CONTRACT_ABI_JSON": "@klaytn-seed-klaytn-flui-card-contract-abi-json-staging",
+    "FLUI_CARD_CONTRACT_ADDRESS_JSON": "@klaytn-seed-klaytn-flui-card-contract-address-json-staging",
+    "FLUI_BANK_CONTRACT_ABI_JSON": "@klaytn-seed-klaytn-flui-bank-contract-abi-json-staging",
+    "FLUI_BANK_CONTRACT_ADDRESS_JSON": "@klaytn-seed-klaytn-flui-bank-contract-address-json-staging"
   }
 }

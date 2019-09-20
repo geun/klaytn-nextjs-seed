@@ -43,12 +43,12 @@ now secrets add klaytn-seed-klaytn-flui-bank-contract-address-json-staging <secr
 ```json
 {
   "env": {
-    "KLAYTN_PRIVATE_KEY": "default-klaytn-private-key-staging",
-    "CAVER_PROVIDER": "default-klaytn-caver-provider-staging",
-    "FLUI_CARD_CONTRACT_ABI_JSON": "klaytn-seed-klaytn-flui-card-contract-abi-json-staging",
-    "FLUI_CARD_CONTRACT_ADDRESS_JSON": "klaytn-seed-klaytn-flui-card-contract-address-json-staging",
-    "FLUI_BANK_CONTRACT_ABI_JSON": "klaytn-seed-klaytn-flui-bank-contract-abi-json-staging",
-    "FLUI_BANK_CONTRACT_ADDRESS_JSON": "klaytn-seed-klaytn-flui-bank-contract-address-json-staging"
+    "KLAYTN_PRIVATE_KEY": "@default-klaytn-private-key-staging",
+    "CAVER_PROVIDER": "@default-klaytn-caver-provider-staging",
+    "FLUI_CARD_CONTRACT_ABI_JSON": "@klaytn-seed-klaytn-flui-card-contract-abi-json-staging",
+    "FLUI_CARD_CONTRACT_ADDRESS_JSON": "@klaytn-seed-klaytn-flui-card-contract-address-json-staging",
+    "FLUI_BANK_CONTRACT_ABI_JSON": "@klaytn-seed-klaytn-flui-bank-contract-abi-json-staging",
+    "FLUI_BANK_CONTRACT_ADDRESS_JSON": "@klaytn-seed-klaytn-flui-bank-contract-address-json-staging"
   }
 }
 ``` 
