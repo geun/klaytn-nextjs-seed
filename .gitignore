@@ -69,3 +69,4 @@ changed.json
 .env.contract
 abi.json
 address.json
+now.json
