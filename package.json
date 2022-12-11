@@ -13,7 +13,7 @@
     "axios": "^0.19.0",
     "caver-js": "^1.1.2",
     "dotenv-webpack": "^1.7.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "isomorphic-unfetch": "^3.0.0",
     "js-scrypt": "^0.2.0",
     "mobx": "^4.13.0",
